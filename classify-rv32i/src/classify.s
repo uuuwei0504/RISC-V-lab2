@@ -166,22 +166,22 @@ classify:
     
     lw t0, 0(s3)
     lw t1, 0(s8)
-#################################################################################
+#------------------------------------------------------------------------------
     #mul a0, t0, t1 # FIXME: Replace 'mul' with your own implementation
-    li      a0, 0             # Clear a0 (result)
-    li      t2, 0             # Clear t2 (bit counter)
+    li      a0, 0            
+    li      t2, 0            
     li      t3, 32
-mul_loop:
-    andi    t4, t1, 1         # t4 = t1 & 1 (check if least significant bit of multiplier is 1)
-    beqz    t4, skip_add      # If t4 is zero, skip addition
-    add     a0, a0, t0        # Add t0 (multiplicand) to result
+mul_loop1:
+    andi    t4, t1, 1         
+    beqz    t4, skip_add1      
+    add     a0, a0, t0        
 
-skip_add:
-    slli    t0, t0, 1         # Shift multiplicand left by 1 (multiply by 2)
-    srli    t1, t1, 1         # Shift multiplier right by 1 (divide by 2)
-    addi    t2, t2, 1         # Increment bit counter
-    blt     t2, t3, mul_loop  # Repeat for 32 bits
-#################################################################################
+skip_add1:
+    slli    t0, t0, 1         
+    srli    t1, t1, 1        
+    addi    t2, t2, 1         
+    blt     t2, t3, mul_loop1
+#------------------------------------------------------------------------------
     slli a0, a0, 2
     jal malloc 
     beq a0, x0, error_malloc
@@ -218,23 +218,23 @@ skip_add:
     mv a0, s9 # move h to the first argument
     lw t0, 0(s3)
     lw t1, 0(s8)
-#################################################################################
+#-----------------------------------------------------------------------------------
     #mul a1, t0, t1 # length of h array and set it as second argument
     # FIXME: Replace 'mul' with your own implementation
-    li      a1, 0             # Clear a1 (result)
-    li      t2, 0             # Clear t2 (bit counter)
+    li      a1, 0      
+    li      t2, 0           
     li      t3, 32
-mul_loopb:
-    andi    t4, t1, 1         # t4 = t1 & 1 (check if least significant bit of multiplier is 1)
-    beqz    t4, skip_addb     # If t4 is zero, skip addition
-    add     a1, a1, t0        # Add t0 (multiplicand) to result
+mul_loop2:
+    andi    t4, t1, 1        
+    beqz    t4, skip_add2     
+    add     a1, a1, t0        
 
-skip_addb:
-    slli    t0, t0, 1         # Shift multiplicand left by 1 (multiply by 2)
-    srli    t1, t1, 1         # Shift multiplier right by 1 (divide by 2)
-    addi    t2, t2, 1         # Increment bit counter
-    blt     t2, t3, mul_loopb # Repeat for 32 bits
-#################################################################################
+skip_add2:
+    slli    t0, t0, 1       
+    srli    t1, t1, 1    
+    addi    t2, t2, 1         
+    blt     t2, t3, mul_loop2
+#-----------------------------------------------------------------------------------
     jal relu
     
     lw a0, 0(sp)
@@ -255,22 +255,21 @@ skip_addb:
     
     lw t0, 0(s3)
     lw t1, 0(s6)
-#################################################################################
+#-----------------------------------------------------------------------------------
     mul a0, t0, t1 # FIXME: Replace 'mul' with your own implementation
-    li      a0, 0             # Clear a0 (result)
-    li      t2, 0             # Clear t2 (bit counter)
+    li      a0, 0           
+    li      t2, 0         
     li      t3, 32
-mul_loopc:
-    andi    t4, t1, 1         # t4 = t1 & 1 (check if least significant bit of multiplier is 1)
-    beqz    t4, skip_addc     # If t4 is zero, skip addition
-    add     a0, a0, t0        # Add t0 (multiplicand) to result
-
-skip_addc:
-    slli    t0, t0, 1         # Shift multiplicand left by 1 (multiply by 2)
-    srli    t1, t1, 1         # Shift multiplier right by 1 (divide by 2)
-    addi    t2, t2, 1         # Increment bit counter
-    blt     t2, t3, mul_loopc # Repeat for 32 bits
-#################################################################################
+mul_loop3:
+    andi    t4, t1, 1        
+    beqz    t4, skip_add3   
+    add     a0, a0, t0      
+skip_add3:
+    slli    t0, t0, 1         
+    srli    t1, t1, 1        
+    addi    t2, t2, 1         
+    blt     t2, t3, mul_loop3
+#-----------------------------------------------------------------------------------
     slli a0, a0, 2
     jal malloc 
     beq a0, x0, error_malloc
@@ -330,23 +329,23 @@ skip_addc:
     mv a0, s10 # load o array into first arg
     lw t0, 0(s3)
     lw t1, 0(s6)
-#################################################################################
+#-----------------------------------------------------------------------------------
     mul a1, t0, t1 # load length of array into second arg
     # FIXME: Replace 'mul' with your own implementation
-    li      a1, 0             # Clear a1 (result)
-    li      t2, 0             # Clear t2 (bit counter)
+    li      a1, 0           
+    li      t2, 0           
     li      t3, 32
-mul_loopd:
-    andi    t4, t1, 1         # t4 = t1 & 1 (check if least significant bit of multiplier is 1)
-    beqz    t4, skip_addd     # If t4 is zero, skip addition
-    add     a1, a1, t0        # Add t0 (multiplicand) to result
+mul_loop4:
+    andi    t4, t1, 1         
+    beqz    t4, skip_add4    
+    add     a1, a1, t0        
 
-skip_addd:
-    slli    t0, t0, 1         # Shift multiplicand left by 1 (multiply by 2)
-    srli    t1, t1, 1         # Shift multiplier right by 1 (divide by 2)
-    addi    t2, t2, 1         # Increment bit counter
-    blt     t2, t3, mul_loopd # Repeat for 32 bits
-#################################################################################
+skip_add4:
+    slli    t0, t0, 1        
+    srli    t1, t1, 1         
+    addi    t2, t2, 1         
+    blt     t2, t3, mul_loop4 
+#-----------------------------------------------------------------------------------
     jal argmax
     
     mv t0, a0 # move return value of argmax into t0
