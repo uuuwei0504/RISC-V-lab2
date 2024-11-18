@@ -92,7 +92,7 @@ return:
 
 ```
 ## result:
-![image](https://hackmd.io/_uploads/H128YVOzJl.png)
+![image](picture/relu.png)
 
 The primary purpose of this program is to process each element in an array as follows:  
 - If the element's value is greater than 0, it remains unchanged.  
@@ -263,7 +263,7 @@ skip_add:
 
 ## result:
 
-![image](https://hackmd.io/_uploads/rktOYEOfkg.png)
+![image](picture/dot.png)
 
 
 ## Steps to Implement Dot Product
@@ -390,7 +390,7 @@ return:
 
 ## result:
 
-![image](https://hackmd.io/_uploads/SJIIn4_z1l.png)
+![image](picture/argmax.png)
 
 
 
@@ -666,7 +666,7 @@ inner_loop_start:
     li t1, 4
     add s4, s4, t1 # incrememtning the column on Matrix B
     
-   addi s1, s1, 1
+    addi s1, s1, 1
     j inner_loop_start
     
 inner_loop_end:
@@ -699,7 +699,7 @@ error:
 ```
 ## result:
 
-![image](https://hackmd.io/_uploads/rJPcGruMJg.png)
+![image](picture/matmul.png)
 
 
 ---
@@ -912,7 +912,7 @@ Replace mul s1, t1, t2 with my own implementation.
 I used my own mul_function to replace mul s1, t1, t2, and the result is also correct.
 ## result:
 
-![image](https://hackmd.io/_uploads/Syj8jHdzkl.png)
+![image](picture/read_matrix.png)
 
 ---
 
@@ -1054,7 +1054,7 @@ Replace mul s4, s2, s3 with my own implementation.
 I used my own mul_function to replace mul s4, s2, s3, and the result is also correct.
 ## result:
 
-![image](https://hackmd.io/_uploads/B1LyCSOM1e.png)
+![image](picture/write_matrix.png)
 
 
 ---
@@ -1109,7 +1109,7 @@ sw t0, 0(a0)       # Store t0 at memory address a0
 
 ## result:
 
-![image](https://hackmd.io/_uploads/BJQXJIOf1g.png)
+![image](picture/abs.png)
 
 ----
 
@@ -1578,13 +1578,15 @@ error_malloc:
 
 ## result:
 
-![image](https://hackmd.io/_uploads/rJ9s-8uf1g.png)
+![image](picture/classify.png)
 
 
 ---
-In the end, testing all the functions took a total of 39.345 seconds to complete the entire RISC-V compilation.
+In the end, testing all the functions took a total of 39.454 seconds to complete the entire RISC-V compilation.
 ## result:
 
-![image](https://hackmd.io/_uploads/rkl7MLuMyx.png)
+![image](picture/all.png)
+
+
 
 
